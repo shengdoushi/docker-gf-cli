@@ -2,7 +2,7 @@ FROM alpine:latest
 
 # 添加架构参数，默认为 amd64
 ARG TARGETARCH=amd64
-ARG GFVERSION=latest
+ARG GFVERSION=v2.10.3
 
 # 安装必要的依赖
 RUN apk add --no-cache wget bash
@@ -11,7 +11,7 @@ RUN apk add --no-cache wget bash
 WORKDIR /app
 
 # 安装 gf-cli 工具（根据目标架构）
-RUN wget -O gf "https://github.com/gogf/gf/releases/${GFVERSION}/download/gf_linux_${TARGETARCH}" && \
+RUN wget -O gf "https://github.com/gogf/gf/releases/download/${GFVERSION}/gf_linux_${TARGETARCH}" && \
     chmod +x gf && \
     ./gf install -y && \
     rm ./gf

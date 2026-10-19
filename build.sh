@@ -13,6 +13,7 @@ fi
 DOCKER_USERNAME=$1
 IMAGE_NAME="${DOCKER_USERNAME}/gf-cli"
 PLATFORMS="linux/amd64,linux/arm64"
+IMAGE_TAG=v2.10.3
 
 # 登录到 Docker Hub
 echo "登录到 Docker Hub..."
@@ -26,7 +27,7 @@ docker buildx inspect --bootstrap
 # 构建并推送多架构镜像
 echo "构建并推送多架构镜像..."
 docker buildx build --platform ${PLATFORMS} \
-  -t ${IMAGE_NAME}:latest \
+  -t ${IMAGE_NAME}:${IMAGE_TAG} \
   --push .
 
-echo "完成！镜像已推送到 Docker Hub: ${IMAGE_NAME}:latest" 
+echo "完成！镜像已推送到 Docker Hub: ${IMAGE_NAME}:${IMAGE_TAG}" 
