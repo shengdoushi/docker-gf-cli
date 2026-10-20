@@ -2,7 +2,7 @@ FROM alpine:latest
 
 # 添加架构参数，默认为 amd64
 ARG TARGETARCH=amd64
-ARG GFVERSION=v2.10.3
+ARG GFVERSION=vtodo
 
 # 安装必要的依赖
 RUN apk add --no-cache wget bash

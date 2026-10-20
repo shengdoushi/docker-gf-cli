@@ -7,25 +7,25 @@
 ### 从 Docker Hub 拉取镜像
 
 ```bash
-docker pull guolihui/gf-cli:latest
+docker pull guolihui/gf-cli:v2.8.3
 ```
 
 ### 运行 GoFrame CLI
 
 ```bash
-docker run --rm -v $(pwd):/app guolihui/gf-cli:latest [命令]
+docker run --rm -v $(pwd):/app guolihui/gf-cli:v2.8.3 [命令]
 ```
 
 例如，创建一个新的 GoFrame 项目：
 
 ```bash
-docker run --rm -v $(pwd):/app guolihui/gf-cli:latest init -u demo
+docker run --rm -v $(pwd):/app guolihui/gf-cli:v2.8.3 init -u demo
 ```
 
 查看帮助信息：
 
 ```bash
-docker run --rm guolihui/gf-cli:latest --help
+docker run --rm guolihui/gf-cli:v2.8.3 --help
 ```
 
 ## 构建和推送镜像
@@ -33,7 +33,7 @@ docker run --rm guolihui/gf-cli:latest --help
 如果您想自己构建并推送镜像到 Docker Hub，可以使用提供的脚本：
 
 ```bash
-./build.sh guolihui
+./build.sh v2.8.3 guolihui
 ```
 
 这将构建支持 amd64 和 arm64 架构的镜像，并将它们推送到 Docker Hub。
@@ -49,7 +49,8 @@ docker buildx inspect --bootstrap
 
 # 构建并推送多架构镜像
 docker buildx build --platform linux/amd64,linux/arm64 \
-  -t guolihui/gf-cli:latest \
+  --build-arg GFVERSION=v2.8.3 \
+  -t guolihui/gf-cli:v2.8.3 \
   --push .
 ```
 
